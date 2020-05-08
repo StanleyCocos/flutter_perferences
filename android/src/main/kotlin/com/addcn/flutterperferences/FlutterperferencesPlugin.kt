@@ -55,10 +55,12 @@ public class FlutterperferencesPlugin: FlutterPlugin, MethodCallHandler {
       val isSelectLabel = sp.getBoolean("newGuide", true)
       val userInfo = sp.getString("userinfo", "") ?: ""
       val userBean = JsonUtil.fromJson(userInfo, UserInfo::class.java)
+      val imei = sp.getString("dervice_id", "") ?: ""
       map["isNewUser"] = !isNewUser
       map["isSelectLabel"] = !isSelectLabel
       map["refreshToken"] = userBean?.data?.refreshToken ?: ""
       map["accessToken"] = userBean?.data?.accessToken ?: ""
+      map["imei"] = imei
       result.success(map)
     } else {
       result.notImplemented()
