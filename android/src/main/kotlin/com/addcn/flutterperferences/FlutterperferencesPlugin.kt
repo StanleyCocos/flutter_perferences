@@ -57,8 +57,8 @@ public class FlutterperferencesPlugin: FlutterPlugin, MethodCallHandler {
       val userBean = JsonUtil.fromJson(userInfo, UserInfo::class.java)
       map["isNewUser"] = isNewUser
       map["isSelectLabel"] = isSelectLabel
-      map["refreshToken"] = userBean.data?.refreshToken ?: ""
-      map["accessToken"] = userBean.data?.accessToken ?: ""
+      map["refreshToken"] = userBean?.data?.refreshToken ?: ""
+      map["accessToken"] = userBean?.data?.accessToken ?: ""
       result.success(map)
     } else {
       result.notImplemented()
