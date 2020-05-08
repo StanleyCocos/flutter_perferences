@@ -3,16 +3,16 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 
 class Flutterperferences {
-  static const MethodChannel _channel = const MethodChannel(
-      'flutterperferences');
+  static const MethodChannel _channel =
+      const MethodChannel('flutterperferences');
   static Map<String, dynamic> _cache;
 
   static Future<void> get getCache async {
-    var cache = await _channel.invokeMethod('getCache');
-    if (cache != null) {
-      _cache = new Map<String, dynamic>.from(cache);
-    } else {
-      _cache = {};
+    try {
+      var cache = await _channel.invokeMethod('getCache');
+      _cache = cache != null ? Map<String, dynamic>.from(cache) : {};
+    } on PlatformException catch (e) {
+      print("Flutterperferences error: $e");
     }
   }
 
