@@ -29,11 +29,11 @@ class Flutterperferences {
   }
 
   bool get isNewUser {
-    return _cache["isNewUser"] ?? true;
+    return _cache["isNewUser"] ?? false;
   }
 
   bool get isSelectLabel {
-    return _cache["isSelectLabel"] ?? true;
+    return _cache["isSelectLabel"] ?? false;
   }
 
   String get refreshToken {
