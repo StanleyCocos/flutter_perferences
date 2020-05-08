@@ -21,7 +21,6 @@ class Flutterperferences {
   Future<void> get getCache async {
     var cache = await _channel.invokeMethod('getCache');
     if (cache != null) {
-//      _cache = cache;
       _cache = new Map<String, dynamic>.from(cache);
     } else {
       _cache = {};
@@ -42,5 +41,9 @@ class Flutterperferences {
 
   String get accessToken {
     return _cache["accessToken"] ?? "";
+  }
+
+  String get imei {
+    return _cache["imei"] ?? "";
   }
 }

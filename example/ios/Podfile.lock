@@ -2,10 +2,16 @@ PODS:
   - Flutter (1.0.0)
   - flutterperferences (0.0.1):
     - Flutter
+    - KeychainSwift
+  - KeychainSwift (19.0.0)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutterperferences (from `.symlinks/plugins/flutterperferences/ios`)
+
+SPEC REPOS:
+  trunk:
+    - KeychainSwift
 
 EXTERNAL SOURCES:
   Flutter:
@@ -15,7 +21,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutterperferences: d4eeec6da74472d4e0be7e92732e951d8b70df71
+  flutterperferences: 3a38eebffc01f62e4c258e910725d3d320a2b126
+  KeychainSwift: a06190cf933ad46b1e0abc3d77d29c06331715c7
 
 PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 

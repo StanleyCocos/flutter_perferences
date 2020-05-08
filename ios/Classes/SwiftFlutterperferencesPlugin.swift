@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import KeychainSwift
 
 public class SwiftFlutterperferencesPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -12,6 +13,7 @@ public class SwiftFlutterperferencesPlugin: NSObject, FlutterPlugin {
     //result("iOS " + UIDevice.current.systemVersion)
     
     if("getCache" == call.method){
+        var uuid: String? = KeychainSwift().get("designUUID")
         var data: [String: Any] = [:]
         let appdomain = Bundle.main.bundleIdentifier ?? ""
         let prefs = UserDefaults.standard.persistentDomain(forName: appdomain) ?? [:]
@@ -26,6 +28,17 @@ public class SwiftFlutterperferencesPlugin: NSObject, FlutterPlugin {
                 data["isSelectLabel"] = prefs[key]
             }
         }
+        
+        if let uuid = uuid {
+            if uuid.count > 0 {
+                data["imei"] = uuid
+            } else {
+                data["imei"] = "count 0"
+            }
+        } else {
+             data["imei"] = "null"
+        }
+    
         result(data)
     }
   }

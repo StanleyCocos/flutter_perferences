@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
     print("isSelectLabel : ${Flutterperferences().isSelectLabel}");
     print("accessToken: ${Flutterperferences().accessToken}");
     print("refreshToken: ${Flutterperferences().refreshToken}");
+    print("imei: ${Flutterperferences().imei}");
   }
 
   @override
