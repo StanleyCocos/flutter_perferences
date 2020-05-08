@@ -22,7 +22,7 @@ public class SwiftFlutterperferencesPlugin: NSObject, FlutterPlugin {
                 data["refreshToken"] = prefs[key]
             } else if (key == "newVersionUser"){
                 data["isNewUser"] = prefs[key]
-            } else if (key == "newSelectLabel"){
+            } else if (key == "SelectLabel"){
                 data["isSelectLabel"] = prefs[key]
             }
         }
