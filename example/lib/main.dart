@@ -21,13 +21,13 @@ class _MyAppState extends State<MyApp> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
     print("123132");
-    await Flutterperferences().getCache;
+    await Flutterperferences.getCache;
     print("123132111");
-    print("isNewUser : ${Flutterperferences().isNewUser}");
-    print("isSelectLabel : ${Flutterperferences().isSelectLabel}");
-    print("accessToken: ${Flutterperferences().accessToken}");
-    print("refreshToken: ${Flutterperferences().refreshToken}");
-    print("imei: ${Flutterperferences().imei}");
+    print("isNewUser : ${Flutterperferences.isNewUser}");
+    print("isSelectLabel : ${Flutterperferences.isSelectLabel}");
+    print("accessToken: ${Flutterperferences.accessToken}");
+    print("refreshToken: ${Flutterperferences.refreshToken}");
+    print("imei: ${Flutterperferences.imei}");
   }
 
   @override

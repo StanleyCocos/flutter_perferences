@@ -51,14 +51,14 @@ public class FlutterperferencesPlugin: FlutterPlugin, MethodCallHandler {
         return
       }
       val sp = context!!.getSharedPreferences("share_data", Context.MODE_PRIVATE)
-      val isNewUser = sp.getBoolean("guildeNew", false)
-      val isSelectLabel = sp.getBoolean("newGuide", false)
+      val isNewUser = sp.getBoolean("guildeNew", true)
+      val isSelectLabel = sp.getBoolean("newGuide", true)
       val userInfo = sp.getString("userinfo", "") ?: ""
       val userBean = JsonUtil.fromJson(userInfo, UserInfo::class.java)
-      map["isNewUser"] = isNewUser
-      map["isSelectLabel"] = isSelectLabel
-      map["refreshToken"] = userBean.data?.refreshToken ?: ""
-      map["accessToken"] = userBean.data?.accessToken ?: ""
+      map["isNewUser"] = !isNewUser
+      map["isSelectLabel"] = !isSelectLabel
+      map["refreshToken"] = userBean?.data?.refreshToken ?: ""
+      map["accessToken"] = userBean?.data?.accessToken ?: ""
       result.success(map)
     } else {
       result.notImplemented()
