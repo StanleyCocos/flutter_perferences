@@ -1,7 +1,9 @@
 package com.addcn.flutterperferences
 
-import androidx.annotation.NonNull;
+import android.content.Context
+import androidx.annotation.NonNull
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -10,9 +12,12 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** FlutterperferencesPlugin */
 public class FlutterperferencesPlugin: FlutterPlugin, MethodCallHandler {
+
+  private var channel: MethodChannel? = null
+  private var context: Context? = null
+
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    val channel = MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "flutterperferences")
-    channel.setMethodCallHandler(FlutterperferencesPlugin());
+    onAttachedToEngine(flutterPluginBinding.applicationContext, flutterPluginBinding.binaryMessenger)
   }
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
@@ -27,14 +32,34 @@ public class FlutterperferencesPlugin: FlutterPlugin, MethodCallHandler {
   companion object {
     @JvmStatic
     fun registerWith(registrar: Registrar) {
-      val channel = MethodChannel(registrar.messenger(), "flutterperferences")
-      channel.setMethodCallHandler(FlutterperferencesPlugin())
+      val instance = FlutterperferencesPlugin()
+      instance.onAttachedToEngine(registrar.context(), registrar.messenger())
     }
   }
 
+  private fun onAttachedToEngine(context: Context, binaryMessenger: BinaryMessenger) {
+    this.context =context
+    channel = MethodChannel(binaryMessenger, "flutterperferences")
+    channel?.setMethodCallHandler(this)
+  }
+
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
+    if (call.method == "getCache") {
+      val map = HashMap<String, Any>()
+      if (context == null) {
+        result.success(map)
+        return
+      }
+      val sp = context!!.getSharedPreferences("share_data", Context.MODE_PRIVATE)
+      val isNewUser = sp.getBoolean("guildeNew", false)
+      val isSelectLabel = sp.getBoolean("newGuide", false)
+      val userInfo = sp.getString("userinfo", "") ?: ""
+      val userBean = JsonUtil.fromJson(userInfo, UserInfo::class.java)
+      map["isNewUser"] = isNewUser
+      map["isSelectLabel"] = isSelectLabel
+      map["refreshToken"] = userBean.data?.refreshToken ?: ""
+      map["accessToken"] = userBean.data?.accessToken ?: ""
+      result.success(map)
     } else {
       result.notImplemented()
     }
@@ -43,3 +68,4 @@ public class FlutterperferencesPlugin: FlutterPlugin, MethodCallHandler {
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
   }
 }
+
