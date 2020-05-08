@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutterperferences (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutterperferences (from `.symlinks/plugins/flutterperferences/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutterperferences:
+    :path: ".symlinks/plugins/flutterperferences/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutterperferences: d4eeec6da74472d4e0be7e92732e951d8b70df71
+
+PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
+
+COCOAPODS: 1.8.3
