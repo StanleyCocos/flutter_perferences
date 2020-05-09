@@ -11,8 +11,8 @@ class Flutterperferences {
     try {
       var cache = await _channel.invokeMethod('getCache');
       _cache = cache != null ? Map<String, dynamic>.from(cache) : {};
-    } on PlatformException catch (e) {
-      print("Flutterperferences error: $e");
+    } on MissingPluginException catch (e) {
+      print("$e");
     }
   }
 
