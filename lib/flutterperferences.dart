@@ -17,22 +17,27 @@ class Flutterperferences {
   }
 
   static bool get isNewUser {
+    if (_cache == null || !_cache.containsKey("isNewUser")) return false;
     return _cache["isNewUser"] ?? false;
   }
 
   static bool get isSelectLabel {
+    if (_cache == null || !_cache.containsKey("isSelectLabel")) return false;
     return _cache["isSelectLabel"] ?? false;
   }
 
   static String get refreshToken {
+    if (_cache == null || !_cache.containsKey("refreshToken")) return "";
     return _cache["refreshToken"] ?? "";
   }
 
   static String get accessToken {
+    if (_cache == null || !_cache.containsKey("accessToken")) return "";
     return _cache["accessToken"] ?? "";
   }
 
   static String get imei {
+    if (_cache == null || !_cache.containsKey("imei")) return "";
     return _cache["imei"] ?? "";
   }
 }
