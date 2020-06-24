@@ -13,7 +13,7 @@ public class SwiftFlutterperferencesPlugin: NSObject, FlutterPlugin {
     //result("iOS " + UIDevice.current.systemVersion)
     
     if("getCache" == call.method){
-        var uuid: String? = KeychainSwift().get("designUUID")
+        let uuid: String? = KeychainSwift().get("designUUID")
         var data: [String: Any] = [:]
         let appdomain = Bundle.main.bundleIdentifier ?? ""
         let prefs = UserDefaults.standard.persistentDomain(forName: appdomain) ?? [:]
@@ -33,10 +33,10 @@ public class SwiftFlutterperferencesPlugin: NSObject, FlutterPlugin {
             if uuid.count > 0 {
                 data["imei"] = uuid
             } else {
-                data["imei"] = "count 0"
+                data["imei"] = ""
             }
         } else {
-             data["imei"] = "null"
+             data["imei"] = ""
         }
     
         result(data)
